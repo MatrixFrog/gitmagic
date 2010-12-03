@@ -69,28 +69,27 @@ In other words, after checking out an old state, Git automatically puts you in a
 
 === Quick Fixes ===
 
-You're in the middle of something when you are told to drop everything and fix a newly discovered bug in commit `1b6d...`:
+You're in the middle of working on the `newCoolFeature` branch when you are told to drop everything and fix a newly discovered bug in commit `1b6d...`:
 
  $ git commit -a
  $ git checkout -b fixes 1b6d
 
-Then once you've fixed the bug:
+Then once you've fixed the bug, commit it.
 
  $ git commit -a -m "Bug fixed"
- $ git push  # to the central repository
+
+You probably want to make sure the fix is on the master branch, since it's the one everyone else will be using.
+
  $ git checkout master
+ $ git merge fixes
+ $ git push  # to the central repository
+ $ git checkout `newCoolFeature`
 
 and resume work on your original task.
 
-You can even 'merge' in the bugfix you just made, either by typing:
+You can even 'merge' in the bugfix you just made by typing:
 
- $ git merge fixes
-
-or:
-
- $ git pull
-
-since you have already pushed the bugfix to the main repository.
+ $ git merge master
 
 === Merging ===
 
